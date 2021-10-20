@@ -5,12 +5,12 @@
  *
  * Copyright (c) 2021 PublishPress
  *
- * FiveStarsReview is free software: you can redistribute it and/or modify
+ * WordPressReviews is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * FiveStarsReview is distributed in the hope that it will be useful,
+ * WordPressReviews is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -34,7 +34,7 @@
  * URL: https://github.com/danieliser/WP-Product-In-Dash-Review-Requests
  */
 
-namespace PublishPress\FiveStarsReview;
+namespace PublishPress\WordPressReviews;
 
 
 use Exception;
@@ -42,7 +42,7 @@ use Exception;
 /**
  * Class ReviewsController
  *
- * @package PublishPress\FiveStarsReview
+ * @package PublishPress\WordPressReviews
  */
 class ReviewsController
 {
@@ -102,7 +102,9 @@ class ReviewsController
      */
     private function addHooks()
     {
-        if (is_admin() && current_user_can('edit_posts')) {
+        $displayBanner = is_admin() && current_user_can('edit_posts');
+
+        if (apply_filter('publishpress_reviews_display_banner', $displayBanner)) {
             $this->installationPath();
             add_action('wp_ajax_' . $this->metaMap['action_ajax_handler'], [$this, 'ajaxHandler']);
             add_action('admin_notices', [$this, 'renderAdminNotices']);

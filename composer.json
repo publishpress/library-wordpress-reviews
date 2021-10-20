@@ -1,5 +1,5 @@
 {
-  "name": "publishpress/publishpress-five-stars-review",
+  "name": "publishpress/wordpress-reviews",
   "type": "library",
   "license": "GPL-3.0-or-later",
   "description": "Library for showing a five-star review banner.",

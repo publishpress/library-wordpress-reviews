@@ -1,12 +1,12 @@
-# PublishPress Five Stars Review Library
-Library for displaying a banner asking for a 5-star review.
+# PublishPress WordPress Reviews Library
+Library for displaying a banner asking for a 5-star review on WordPress plugins.
 
 ## Installation
 
 We recommend using composer for adding this library as requirement:
 
 ```shell
-$ composer require publishpress/publishpress-five-stars-review
+$ composer require publishpress/wordpress-reviews
 ```
 
 ## How to use it
@@ -24,10 +24,18 @@ You can add it to the main class fo the plugin. When instantiating it you have t
 
 Pro plugins doesn't require this library, if they use they embed the free plugin. If you instantiate this library on both free and pro plugins, users will probably see duplicated banners.
 
+It by default displays the banner when the following conditional is true:
+
+```php
+is_admin() && current_user_can('edit_posts')
+```
+
+But you should 
+
 ```php
 <?php
 
-use PublishPress\FiveStarsReview\ReviewsController;
+use PublishPress\WordPressReviews\ReviewsController;
 
 class MyPlugin
 {
@@ -95,3 +103,7 @@ function my_plugin_reviews_meta_map($metaMap)
 
 You can easily test the banner in the WordPress admin. 
 After initializing the library, change the option `publishpress_reviews_installed_on` in the options table. Set it for an older data to make sure the time difference is bigger than the trigger we are using.
+
+## Copyright
+
+Based on the [library](https://github.com/danieliser/WP-Product-In-Dash-Review-Requests) created by [Daniel Iser](https://danieliser.com).
