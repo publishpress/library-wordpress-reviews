@@ -64,35 +64,35 @@ By default, the library will use the plugin's slug as prefix for the actions, me
 ```php
 [
     'action_ajax_handler' => $this->pluginSlug . '_action',
-    'option_installed_on' => $this->pluginSlug . '_reviews_installed_on',
-    'nonce_action' => $this->pluginSlug . '_reviews_action',
-    'user_meta_dismissed_triggers' => '_' . $this->pluginSlug . '_reviews_dismissed_triggers',
-    'user_meta_last_dismissed' => '_' . $this->pluginSlug . '_reviews_last_dismissed',
-    'user_meta_already_did' => '_' . $this->pluginSlug . '_reviews_already_did',
-    'filter_triggers' => $this->pluginSlug . '_reviews_triggers',
+    'option_installed_on' => $this->pluginSlug . '_wp_reviews_installed_on',
+    'nonce_action' => $this->pluginSlug . '_wp_reviews_action',
+    'user_meta_dismissed_triggers' => '_' . $this->pluginSlug . '_wp_reviews_dismissed_triggers',
+    'user_meta_last_dismissed' => '_' . $this->pluginSlug . '_wp_reviews_last_dismissed',
+    'user_meta_already_did' => '_' . $this->pluginSlug . '_wp_reviews_already_did',
+    'filter_triggers' => $this->pluginSlug . '_wp_reviews_triggers',
 ]
 ```
 
 If you already use 
 the original library in your plugin and want to keep compatibility with the current sites data, you can customize the
-hooks and keys for the data stored in the DB using the filter `publishpress_reviews_meta_map_<plugin_slug>`:
+hooks and keys for the data stored in the DB using the filter `publishpress_wp_reviews_meta_map_<plugin_slug>`:
 
 ```php
 <?php
 
-add_filter('publishpress_reviews_meta_map_my_plugin', 'my_plugin_reviews_meta_map');
+add_filter('publishpress_wp_reviews_meta_map_my_plugin', 'my_plugin_wp_reviews_meta_map');
 
-function my_plugin_reviews_meta_map($metaMap)
+function my_plugin_wp_reviews_meta_map($metaMap)
 {
     // You can override all the array, or specific keys.
     $metaMap = [
         'action_ajax_handler' => 'old_slug_ajax_action',
-        'option_installed_on' => 'old_slug_reviews_installed_on',
-        'nonce_action' => 'old_slug_reviews_action',
-        'user_meta_dismissed_triggers' => '_old_slug_reviews_dismissed_triggers',
-        'user_meta_last_dismissed' => '_old_slug_reviews_last_dismissed',
-        'user_meta_already_did' => '_old_slug_reviews_already_did',
-        'filter_triggers' => 'old_slug_reviews_triggers',
+        'option_installed_on' => 'old_slug_wp_reviews_installed_on',
+        'nonce_action' => 'old_slug_wp_reviews_action',
+        'user_meta_dismissed_triggers' => '_old_slug_wp_reviews_dismissed_triggers',
+        'user_meta_last_dismissed' => '_old_slug_wp_reviews_last_dismissed',
+        'user_meta_already_did' => '_old_slug_wp_reviews_already_did',
+        'filter_triggers' => 'old_slug_wp_reviews_triggers',
     ];
 
     return $metaMap;
@@ -102,7 +102,7 @@ function my_plugin_reviews_meta_map($metaMap)
 ## Testing
 
 You can easily test the banner in the WordPress admin. 
-After initializing the library, change the option `publishpress_reviews_installed_on` in the options table. Set it for an older data to make sure the time difference is bigger than the trigger we are using.
+After initializing the library, change the option `publishpress_wp_reviews_installed_on` in the options table. Set it for an older data to make sure the time difference is bigger than the trigger we are using.
 
 ## Copyright
 

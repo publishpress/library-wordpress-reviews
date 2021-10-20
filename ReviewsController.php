@@ -76,15 +76,15 @@ class ReviewsController
         $this->pluginName = $pluginName;
 
         $this->metaMap = apply_filters(
-            'publishpress_reviews_meta_map_' . $pluginSlug,
+            'publishpress_wp_reviews_meta_map_' . $pluginSlug,
             [
                 'action_ajax_handler' => $this->pluginSlug . '_action',
-                'option_installed_on' => $this->pluginSlug . '_reviews_installed_on',
-                'nonce_action' => $this->pluginSlug . '_reviews_action',
-                'user_meta_dismissed_triggers' => '_' . $this->pluginSlug . '_reviews_dismissed_triggers',
-                'user_meta_last_dismissed' => '_' . $this->pluginSlug . '_reviews_last_dismissed',
-                'user_meta_already_did' => '_' . $this->pluginSlug . '_reviews_already_did',
-                'filter_triggers' => $this->pluginSlug . '_reviews_triggers',
+                'option_installed_on' => $this->pluginSlug . '_wp_reviews_installed_on',
+                'nonce_action' => $this->pluginSlug . '_wp_reviews_action',
+                'user_meta_dismissed_triggers' => '_' . $this->pluginSlug . '_wp_reviews_dismissed_triggers',
+                'user_meta_last_dismissed' => '_' . $this->pluginSlug . '_wp_reviews_last_dismissed',
+                'user_meta_already_did' => '_' . $this->pluginSlug . '_wp_reviews_already_did',
+                'filter_triggers' => $this->pluginSlug . '_wp_reviews_triggers',
             ]
         );
     }
@@ -104,7 +104,7 @@ class ReviewsController
     {
         $displayBanner = is_admin() && current_user_can('edit_posts');
 
-        if (apply_filter('publishpress_reviews_display_banner', $displayBanner)) {
+        if (apply_filter('publishpress_wp_reviews_display_banner', $displayBanner)) {
             $this->installationPath();
             add_action('wp_ajax_' . $this->metaMap['action_ajax_handler'], [$this, 'ajaxHandler']);
             add_action('admin_notices', [$this, 'renderAdminNotices']);
