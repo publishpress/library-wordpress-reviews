@@ -78,13 +78,13 @@ function my_plugin_reviews_meta_map($metaMap)
 {
     // You can override all the array, or specific keys.
     $metaMap = [
-        'action_ajax_handler' => $this->pluginSlug . '_custom_action',
-        'option_installed_on' => $this->pluginSlug . '_custom_reviews_installed_on',
-        'nonce_action' => $this->pluginSlug . '_custom_reviews_action',
-        'user_meta_dismissed_triggers' => '_' . $this->pluginSlug . '_custom_reviews_dismissed_triggers',
-        'user_meta_last_dismissed' => '_' . $this->pluginSlug . '_custom_reviews_last_dismissed',
-        'user_meta_already_did' => '_' . $this->pluginSlug . '_custom_reviews_already_did',
-        'filter_triggers' => $this->pluginSlug . '_custom_reviews_triggers',
+        'action_ajax_handler' => 'old_slug_ajax_action',
+        'option_installed_on' => 'old_slug_reviews_installed_on',
+        'nonce_action' => 'old_slug_reviews_action',
+        'user_meta_dismissed_triggers' => '_old_slug_reviews_dismissed_triggers',
+        'user_meta_last_dismissed' => '_old_slug_reviews_last_dismissed',
+        'user_meta_already_did' => '_old_slug_reviews_already_did',
+        'filter_triggers' => 'old_slug_reviews_triggers',
     ];
 
     return $metaMap;
