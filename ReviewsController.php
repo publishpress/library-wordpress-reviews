@@ -396,7 +396,6 @@ class ReviewsController
 
     /**
      * @param $userId
-     * @param bool $value
      */
     private function setUserAlreadyDid($userId)
     {
