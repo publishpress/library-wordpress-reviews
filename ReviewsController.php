@@ -87,6 +87,8 @@ class ReviewsController
                 'filter_triggers' => $this->pluginSlug . '_wp_reviews_triggers',
             ]
         );
+
+        add_action('admin_enqueue_scripts', [$this, 'enqueueStyle']);
     }
 
     /**
@@ -391,6 +393,31 @@ class ReviewsController
         update_user_meta($userId, $this->metaMap['user_meta_already_did'], true);
     }
 
+    public function enqueueStyle()
+    {
+        if (!$this->displayBanner()) {
+            return;
+        }
+
+        wp_register_style('publishpress_wordpress_reviews_style', false);
+        wp_enqueue_style('publishpress_wordpress_reviews_style');
+        wp_add_inline_style(
+            'publishpress_wordpress_reviews_style',
+            "
+            .{$this->pluginSlug}-wp-reviews-notice .button,
+            .{$this->pluginSlug}-wp-reviews-notice p {
+                font-size: 15px;
+            }
+            
+            .{$this->pluginSlug}-wp-reviews-notice .button.button-primary {
+                background-color: #655897;
+                border-color: #3d355c;
+                color: #fff;
+            }
+            "
+        );
+    }
+
     /**
      * Render admin notices if available.
      */
@@ -449,10 +476,10 @@ class ReviewsController
                 }
 
                 $(document)
-                    .on('click', '.<?php echo $this->pluginSlug; ?>-notice .<?php echo $this->pluginSlug; ?>-dismiss', function (event) {
+                    .on('click', '.<?php echo $this->pluginSlug; ?>-wp-reviews-notice .<?php echo "{$this->pluginSlug}-dismiss"; ?>', function (event) {
                         var $this = $(this),
                             reason = $this.data('reason'),
-                            notice = $this.parents('.<?php echo $this->pluginSlug; ?>-notice');
+                            notice = $this.parents('.<?php echo $this->pluginSlug; ?>-wp-reviews-notice');
 
                         notice.fadeTo(100, 0, function () {
                             notice.slideUp(100, function () {
@@ -464,7 +491,7 @@ class ReviewsController
                     })
                     .ready(function () {
                         setTimeout(function () {
-                            $('.<?php echo $this->pluginSlug; ?>-notice button.notice-dismiss').click(function (event) {
+                            $('.<?php echo $this->pluginSlug; ?>-wp-reviews-notice button.notice-dismiss').click(function (event) {
                                 dismiss('maybe_later');
                             });
                         }, 1000);
@@ -472,27 +499,23 @@ class ReviewsController
             }(jQuery));
         </script>
 
-        <div class="notice notice-success is-dismissible <?php
-        echo $this->pluginSlug; ?>-notice">
+        <div class="notice notice-success is-dismissible <?php echo "{$this->pluginSlug}-wp-reviews-notice"; ?>">
 
             <p>
                 <?php
                 echo $trigger['message']; ?>
             </p>
             <p>
-                <a class="button button-primary <?php
-                echo $this->pluginSlug; ?>-dismiss" target="_blank"
+                <a class="button button-primary <?php echo "{$this->pluginSlug}-dismiss"; ?>" target="_blank"
                    href="<?php
                    echo $trigger['link']; ?>"
                    data-reason="am_now">
                     <strong><?php
                         _e('Ok, you deserve it', $this->pluginSlug); ?></strong>
-                </a> <a href="#" class="button <?php
-                echo $this->pluginSlug; ?>-dismiss" data-reason="maybe_later">
+                </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="maybe_later">
                     <?php
                     _e('Nope, maybe later', $this->pluginSlug); ?>
-                </a> <a href="#" class="button <?php
-                echo $this->pluginSlug; ?>-dismiss" data-reason="already_did">
+                </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="already_did">
                     <?php
                     _e('I already did', $this->pluginSlug); ?>
                 </a>
