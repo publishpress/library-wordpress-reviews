@@ -98,13 +98,21 @@ class ReviewsController
     }
 
     /**
+     * @return bool
+     */
+    private function displayBanner()
+    {
+        $displayBanner = is_admin() && current_user_can('edit_posts');
+
+        return apply_filters('publishpress_wp_reviews_display_banner_' . $this->pluginSlug, $displayBanner);
+    }
+
+    /**
      * Hook into relevant WP actions.
      */
     private function addHooks()
     {
-        $displayBanner = is_admin() && current_user_can('edit_posts');
-
-        if (apply_filters('publishpress_wp_reviews_display_banner_' . $this->pluginSlug, $displayBanner)) {
+        if ($this->displayBanner()) {
             $this->installationPath();
             add_action('wp_ajax_' . $this->metaMap['action_ajax_handler'], [$this, 'ajaxHandler']);
             add_action('admin_notices', [$this, 'renderAdminNotices']);
