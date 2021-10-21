@@ -417,6 +417,7 @@ class ReviewsController
             .{$this->pluginSlug}-wp-reviews-notice .button,
             .{$this->pluginSlug}-wp-reviews-notice p {
                 font-size: 15px;
+                border: 1px solid silver;
             }
             
             .{$this->pluginSlug}-wp-reviews-notice .button:not(.notice-dismiss) {
@@ -431,9 +432,21 @@ class ReviewsController
             
             .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
                 float: right;
-                height: 70px;
+                height: 110px;
                 margin-top: 10px;
                 margin-left: 10px;
+            }
+            
+            @media (min-width:1000px) {
+                .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
+                    height: 90px;
+                }
+            }
+            
+            @media (min-width:1700px) {
+                .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
+                    height: 70px;
+                }
             }
             "
         );
