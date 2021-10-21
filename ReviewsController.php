@@ -266,7 +266,7 @@ class ReviewsController
 
         if (! isset($triggers)) {
             $timeMessage = __(
-                'Hey, you\'ve been using %s for %s on your site - I hope it has been helpful. I would very much appreciate it if you could quickly give it a 5-star rating on WordPress, just to help us spread the word.',
+                'Hey, you\'ve been using %1$s for %2$s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep %1$s growing.',
                 $this->pluginSlug
             );
 
@@ -416,7 +416,6 @@ class ReviewsController
             .{$this->pluginSlug}-wp-reviews-notice .button,
             .{$this->pluginSlug}-wp-reviews-notice p {
                 font-size: 15px;
-                border: 1px solid silver;
             }
             
             .{$this->pluginSlug}-wp-reviews-notice .button:not(.notice-dismiss) {
