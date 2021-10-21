@@ -432,7 +432,8 @@ class ReviewsController
             .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
                 float: right;
                 height: 70px;
-                 
+                margin-top: 10px;
+                margin-left: 10px;
             }
             "
         );
