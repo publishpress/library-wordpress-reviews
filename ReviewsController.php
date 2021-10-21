@@ -412,6 +412,10 @@ class ReviewsController
                 font-size: 15px;
             }
             
+            .{$this->pluginSlug}-wp-reviews-notice .button:not(.notice-dismiss) {
+                border-width: 1px;
+            }
+            
             .{$this->pluginSlug}-wp-reviews-notice .button.button-primary {
                 background-color: #655897;
                 border-color: #3d355c;
