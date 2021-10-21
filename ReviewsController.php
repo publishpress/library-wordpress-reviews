@@ -114,9 +114,12 @@ class ReviewsController
      */
     private function addHooks()
     {
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            add_action('wp_ajax_' . $this->metaMap['action_ajax_handler'], [$this, 'ajaxHandler']);
+        }
+
         if ($this->displayBanner()) {
             $this->installationPath();
-            add_action('wp_ajax_' . $this->metaMap['action_ajax_handler'], [$this, 'ajaxHandler']);
             add_action('admin_notices', [$this, 'renderAdminNotices']);
             add_action('network_admin_notices', [$this, 'renderAdminNotices']);
             add_action('user_admin_notices', [$this, 'renderAdminNotices']);
