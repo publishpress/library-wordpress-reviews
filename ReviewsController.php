@@ -541,9 +541,9 @@ class ReviewsController
                 <a class="button button-primary <?php echo "{$this->pluginSlug}-dismiss"; ?>" target="_blank"
                    href="<?php echo $trigger['link']; ?>"
                    data-reason="am_now">
-                    <strong><?php _e('Ok, you deserve it', $this->pluginSlug); ?></strong>
+                    <strong><?php echo sprintf(__('Click here to add your rating for %s', $this->pluginSlug), $this->pluginName); ?></strong>
                 </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="maybe_later">
-                    <?php _e('Nope, maybe later', $this->pluginSlug); ?>
+                    <?php _e('Maybe later', $this->pluginSlug); ?>
                 </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="already_did">
                     <?php _e('I already did', $this->pluginSlug); ?>
                 </a>
