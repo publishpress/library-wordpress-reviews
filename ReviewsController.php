@@ -67,13 +67,20 @@ class ReviewsController
     private $metaMap;
 
     /**
+     * @var string
+     */
+    private $iconUrl;
+
+    /**
      * @param string $pluginSlug
      * @param string $pluginName
+     * @param string $iconUrl
      */
-    public function __construct($pluginSlug, $pluginName)
+    public function __construct($pluginSlug, $pluginName, $iconUrl = '')
     {
         $this->pluginSlug = $pluginSlug;
         $this->pluginName = $pluginName;
+        $this->iconUrl = esc_url_raw($iconUrl);
 
         $this->metaMap = apply_filters(
             'publishpress_wp_reviews_meta_map_' . $pluginSlug,
@@ -100,16 +107,6 @@ class ReviewsController
     }
 
     /**
-     * @return bool
-     */
-    private function displayBanner()
-    {
-        $displayBanner = is_admin() && current_user_can('edit_posts');
-
-        return apply_filters('publishpress_wp_reviews_display_banner_' . $this->pluginSlug, $displayBanner);
-    }
-
-    /**
      * Hook into relevant WP actions.
      */
     private function addHooks()
@@ -124,6 +121,16 @@ class ReviewsController
             add_action('network_admin_notices', [$this, 'renderAdminNotices']);
             add_action('user_admin_notices', [$this, 'renderAdminNotices']);
         }
+    }
+
+    /**
+     * @return bool
+     */
+    private function displayBanner()
+    {
+        $displayBanner = is_admin() && current_user_can('edit_posts');
+
+        return apply_filters('publishpress_wp_reviews_display_banner_' . $this->pluginSlug, $displayBanner);
     }
 
     /**
@@ -398,7 +405,7 @@ class ReviewsController
 
     public function enqueueStyle()
     {
-        if (!$this->displayBanner()) {
+        if (! $this->displayBanner()) {
             return;
         }
 
@@ -420,6 +427,12 @@ class ReviewsController
                 background-color: #655897;
                 border-color: #3d355c;
                 color: #fff;
+            }
+            
+            .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
+                float: right;
+                height: 70px;
+                 
             }
             "
         );
@@ -507,29 +520,23 @@ class ReviewsController
         </script>
 
         <div class="notice notice-success is-dismissible <?php echo "{$this->pluginSlug}-wp-reviews-notice"; ?>">
+            <?php if (! empty($this->iconUrl)) : ?>
+                <img src="<?php echo $this->iconUrl; ?>" class="notice-icon"/>
+            <?php endif; ?>
 
-            <p>
-                <?php
-                echo $trigger['message']; ?>
-            </p>
+            <p><?php echo $trigger['message']; ?></p>
             <p>
                 <a class="button button-primary <?php echo "{$this->pluginSlug}-dismiss"; ?>" target="_blank"
-                   href="<?php
-                   echo $trigger['link']; ?>"
+                   href="<?php echo $trigger['link']; ?>"
                    data-reason="am_now">
-                    <strong><?php
-                        _e('Ok, you deserve it', $this->pluginSlug); ?></strong>
+                    <strong><?php _e('Ok, you deserve it', $this->pluginSlug); ?></strong>
                 </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="maybe_later">
-                    <?php
-                    _e('Nope, maybe later', $this->pluginSlug); ?>
+                    <?php _e('Nope, maybe later', $this->pluginSlug); ?>
                 </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="already_did">
-                    <?php
-                    _e('I already did', $this->pluginSlug); ?>
+                    <?php _e('I already did', $this->pluginSlug); ?>
                 </a>
             </p>
-
         </div>
-
         <?php
     }
 
