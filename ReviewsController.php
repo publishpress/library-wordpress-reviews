@@ -110,11 +110,9 @@ class ReviewsController
          *
          * @return array
          */
-        $this->metaMap = apply_filters_deprecated(
+        $this->metaMap = apply_filters(
             'publishpress_wp_reviews_meta_map_' . $this->pluginSlug,
-            [$this->metaMap],
-            '1.1.9',
-            $pluginSlug . '_wp_reviews_meta_map'
+            $this->metaMap
         );
 
         add_action('admin_enqueue_scripts', [$this, 'enqueueStyle']);
@@ -160,11 +158,9 @@ class ReviewsController
          *
          * @return bool
          */
-        $displayNotice = apply_filters_deprecated(
+        $displayNotice = apply_filters(
             'publishpress_wp_reviews_display_banner_' . $this->pluginSlug,
-            [$displayNotice],
-            '1.1.9',
-            $this->pluginSlug . '_wp_reviews_allow_display_notice'
+            $displayNotice
         );
 
         /**
