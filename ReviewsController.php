@@ -82,8 +82,15 @@ class ReviewsController
         $this->pluginName = $pluginName;
         $this->iconUrl = esc_url_raw($iconUrl);
 
+        /**
+         * Filter to replace the meta map with options, filters and actions names.
+         *
+         * @param array
+         *
+         * @return array
+         */
         $this->metaMap = apply_filters(
-            'publishpress_wp_reviews_meta_map_' . $pluginSlug,
+            $pluginSlug . '_wp_reviews_meta_map',
             [
                 'action_ajax_handler' => $this->pluginSlug . '_action',
                 'option_installed_on' => $this->pluginSlug . '_wp_reviews_installed_on',
@@ -93,6 +100,21 @@ class ReviewsController
                 'user_meta_already_did' => '_' . $this->pluginSlug . '_wp_reviews_already_did',
                 'filter_triggers' => $this->pluginSlug . '_wp_reviews_triggers',
             ]
+        );
+
+        /**
+         * Legacy filter to replace the meta map with options, filters and actions names.
+         *
+         * @param array
+         * @deprecated 1.1.9
+         *
+         * @return array
+         */
+        $this->metaMap = apply_filters_deprecated(
+            'publishpress_wp_reviews_meta_map_' . $this->pluginSlug,
+            [$this->metaMap],
+            '1.1.9',
+            $pluginSlug . '_wp_reviews_meta_map'
         );
 
         add_action('admin_enqueue_scripts', [$this, 'enqueueStyle']);
@@ -115,7 +137,7 @@ class ReviewsController
             add_action('wp_ajax_' . $this->metaMap['action_ajax_handler'], [$this, 'ajaxHandler']);
         }
 
-        if ($this->displayBanner()) {
+        if ($this->screenIsAllowedToDisplayNotice()) {
             $this->installationPath();
             add_action('admin_notices', [$this, 'renderAdminNotices']);
             add_action('network_admin_notices', [$this, 'renderAdminNotices']);
@@ -126,11 +148,33 @@ class ReviewsController
     /**
      * @return bool
      */
-    private function displayBanner()
+    private function screenIsAllowedToDisplayNotice()
     {
-        $displayBanner = is_admin() && current_user_can('edit_posts');
+        $displayNotice = is_admin() && current_user_can('edit_posts');
 
-        return apply_filters('publishpress_wp_reviews_display_banner_' . $this->pluginSlug, $displayBanner);
+        /**
+         * Deprecated filter to specify a custom conditional to display or not the notice.
+         *
+         * @param bool
+         * @deprecated 1.1.9
+         *
+         * @return bool
+         */
+        $displayNotice = apply_filters_deprecated(
+            'publishpress_wp_reviews_display_banner_' . $this->pluginSlug,
+            [$displayNotice],
+            '1.1.9',
+            $this->pluginSlug . '_wp_reviews_allow_display_notice'
+        );
+
+        /**
+         * Filter to specify a custom conditional to display or not the notice.
+         *
+         * @param bool
+         *
+         * @return bool
+         */
+        return apply_filters($this->pluginSlug . '_wp_reviews_allow_display_notice', $displayNotice);
     }
 
     /**

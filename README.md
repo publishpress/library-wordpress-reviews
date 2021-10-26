@@ -30,7 +30,7 @@ It by default displays the banner when the following condition is true:
 is_admin() && current_user_can('edit_posts')
 ```
 
-But you can specify custom criteria to display the banner hooking into the filter `publishpress_wp_reviews_display_banner_<plugin_slug>`.
+But you can specify custom criteria to display the banner hooking into the filter `<plugin_slug>_wp_reviews_allow_display_notice`.
 
 ```php
 <?php
@@ -56,7 +56,7 @@ class MyPlugin
     public function init()
     {
         // .......
-        add_filter('publishpress_wp_reviews_display_banner_my-plugin', [$this, 'shouldDisplayBanner']);
+        add_filter('my-plugin_wp_reviews_allow_display_notice', [$this, 'shouldDisplayBanner']);
         
         $this->reviewController->init();
     }
@@ -107,12 +107,12 @@ By default, the library will use the plugin's slug as a prefix for the actions, 
 ```
 
 If you already use the original library in your plugin and want to keep compatibility with current sites data, you can customize the
-hooks and keys for the data stored in the DB using the filter `publishpress_wp_reviews_meta_map_<plugin_slug>`:
+hooks and keys for the data stored in the DB using the filter `<plugin_slug>_wp_reviews_meta_map`:
 
 ```php
 <?php
 
-add_filter('publishpress_wp_reviews_meta_map_my-plugin', 'my_plugin_wp_reviews_meta_map');
+add_filter('my-plugin_wp_reviews_meta_map', 'my_plugin_wp_reviews_meta_map');
 
 function my_plugin_wp_reviews_meta_map($metaMap)
 {
