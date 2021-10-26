@@ -448,7 +448,7 @@ class ReviewsController
 
     public function enqueueStyle()
     {
-        if (! $this->displayBanner()) {
+        if (! $this->screenIsAllowedToDisplayNotice()) {
             return;
         }
 
