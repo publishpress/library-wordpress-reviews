@@ -90,15 +90,15 @@ class ReviewsController
          * @return array
          */
         $this->metaMap = apply_filters(
-            $pluginSlug . '_wp_reviews_meta_map',
+            "{$pluginSlug}_wp_reviews_meta_map",
             [
-                'action_ajax_handler' => $this->pluginSlug . '_action',
-                'option_installed_on' => $this->pluginSlug . '_wp_reviews_installed_on',
-                'nonce_action' => $this->pluginSlug . '_wp_reviews_action',
-                'user_meta_dismissed_triggers' => '_' . $this->pluginSlug . '_wp_reviews_dismissed_triggers',
-                'user_meta_last_dismissed' => '_' . $this->pluginSlug . '_wp_reviews_last_dismissed',
-                'user_meta_already_did' => '_' . $this->pluginSlug . '_wp_reviews_already_did',
-                'filter_triggers' => $this->pluginSlug . '_wp_reviews_triggers',
+                'action_ajax_handler' => "{$this->pluginSlug}_action",
+                'option_installed_on' => "{$this->pluginSlug}_wp_reviews_installed_on",
+                'nonce_action' => "{$this->pluginSlug}_wp_reviews_action",
+                'user_meta_dismissed_triggers' => "_{$this->pluginSlug}_wp_reviews_dismissed_triggers",
+                'user_meta_last_dismissed' => "_{$this->pluginSlug}_wp_reviews_last_dismissed",
+                'user_meta_already_did' => "_{$this->pluginSlug}_wp_reviews_already_did",
+                'filter_triggers' => "{$this->pluginSlug}_wp_reviews_triggers",
             ]
         );
 
@@ -106,12 +106,12 @@ class ReviewsController
          * Legacy filter to replace the meta map with options, filters and actions names.
          *
          * @param array
+         * @return array
          * @deprecated 1.1.9
          *
-         * @return array
          */
         $this->metaMap = apply_filters(
-            'publishpress_wp_reviews_meta_map_' . $this->pluginSlug,
+            "publishpress_wp_reviews_meta_map_{$this->pluginSlug}",
             $this->metaMap
         );
 
@@ -132,7 +132,7 @@ class ReviewsController
     private function addHooks()
     {
         if (defined('DOING_AJAX') && DOING_AJAX) {
-            add_action('wp_ajax_' . $this->metaMap['action_ajax_handler'], [$this, 'ajaxHandler']);
+            add_action("wp_ajax_{$this->metaMap['action_ajax_handler']}", [$this, 'ajaxHandler']);
         }
 
         if ($this->screenIsAllowedToDisplayNotice()) {
@@ -154,12 +154,12 @@ class ReviewsController
          * Deprecated filter to specify a custom conditional to display or not the notice.
          *
          * @param bool
+         * @return bool
          * @deprecated 1.1.9
          *
-         * @return bool
          */
         $displayNotice = apply_filters(
-            'publishpress_wp_reviews_display_banner_' . $this->pluginSlug,
+            "publishpress_wp_reviews_display_banner_{$this->pluginSlug}",
             $displayNotice
         );
 
@@ -170,7 +170,7 @@ class ReviewsController
          *
          * @return bool
          */
-        return apply_filters($this->pluginSlug . '_wp_reviews_allow_display_notice', $displayNotice);
+        return apply_filters("{$this->pluginSlug}_wp_reviews_allow_display_notice", $displayNotice);
     }
 
     /**
@@ -320,7 +320,7 @@ class ReviewsController
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +1 week') < time(),
                                 ],
-                                'link' => 'https://wordpress.org/support/plugin/' . $this->pluginSlug . '/reviews/?rate=5#rate-response',
+                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/?rate=5#rate-response",
                                 'priority' => 10,
                             ],
                             'one_month' => [
@@ -328,7 +328,7 @@ class ReviewsController
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +1 month') < time(),
                                 ],
-                                'link' => 'https://wordpress.org/support/plugin/' . $this->pluginSlug . '/reviews/?rate=5#rate-response',
+                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/?rate=5#rate-response",
                                 'priority' => 20,
                             ],
                             'three_months' => [
@@ -340,7 +340,7 @@ class ReviewsController
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +3 months') < time(),
                                 ],
-                                'link' => 'https://wordpress.org/support/plugin/' . $this->pluginSlug . '/reviews/?rate=5#rate-response',
+                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/?rate=5#rate-response",
                                 'priority' => 30,
                             ],
                         ],
@@ -548,7 +548,7 @@ class ReviewsController
                 }
 
                 $(document)
-                    .on('click', '.<?php echo $this->pluginSlug; ?>-wp-reviews-notice .<?php echo "{$this->pluginSlug}-dismiss"; ?>', function (event) {
+                    .on('click', '.<?php echo $this->pluginSlug; ?>-wp-reviews-notice .<?php echo "$this->pluginSlug-dismiss"; ?>', function (event) {
                         var $this = $(this),
                             reason = $this.data('reason'),
                             notice = $this.parents('.<?php echo $this->pluginSlug; ?>-wp-reviews-notice');
@@ -571,21 +571,41 @@ class ReviewsController
             }(jQuery));
         </script>
 
-        <div class="notice notice-success is-dismissible <?php echo "{$this->pluginSlug}-wp-reviews-notice"; ?>">
-            <?php if (! empty($this->iconUrl)) : ?>
-                <img src="<?php echo $this->iconUrl; ?>" class="notice-icon"/>
-            <?php endif; ?>
+        <div class="notice notice-success is-dismissible <?php
+        echo "$this->pluginSlug-wp-reviews-notice"; ?>">
+            <?php
+            if (! empty($this->iconUrl)) : ?>
+                <img src="<?php
+                echo $this->iconUrl; ?>" class="notice-icon" alt="<?php
+                echo $this->pluginName; ?> logo"/>
+            <?php
+            endif; ?>
 
-            <p><?php echo $trigger['message']; ?></p>
+            <p><?php
+                echo $trigger['message']; ?></p>
             <p>
-                <a class="button button-primary <?php echo "{$this->pluginSlug}-dismiss"; ?>" target="_blank"
-                   href="<?php echo $trigger['link']; ?>"
-                   data-reason="am_now">
-                    <strong><?php echo sprintf(__('Click here to add your rating for %s', $this->pluginSlug), $this->pluginName); ?></strong>
-                </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="maybe_later">
-                    <?php _e('Maybe later', $this->pluginSlug); ?>
-                </a> <a href="#" class="button <?php echo "{$this->pluginSlug}-dismiss"; ?>" data-reason="already_did">
-                    <?php _e('I already did', $this->pluginSlug); ?>
+                <a class="button button-primary <?php
+                echo "$this->pluginSlug-dismiss"; ?>"
+                   target="_blank"
+                   href="<?php
+                   echo $trigger['link']; ?>"
+                   data-reason="am_now"
+                >
+                    <strong><?php
+                        echo sprintf(
+                            __('Click here to add your rating for %s', $this->pluginSlug),
+                            $this->pluginName
+                        ); ?></strong>
+                </a>
+                <a href="#" class="button <?php
+                echo "$this->pluginSlug-dismiss"; ?>" data-reason="maybe_later">
+                    <?php
+                    _e('Maybe later', $this->pluginSlug); ?>
+                </a>
+                <a href="#" class="button <?php
+                echo "$this->pluginSlug-dismiss"; ?>" data-reason="already_did">
+                    <?php
+                    _e('I already did', $this->pluginSlug); ?>
                 </a>
             </p>
         </div>
