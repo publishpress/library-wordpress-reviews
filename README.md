@@ -1,5 +1,8 @@
 # PublishPress WordPress Reviews Library
-Library for displaying a banner asking for a 5-star review on WordPress plugins.
+
+The PublishPress WordPress Reviews is a library for displaying a banner to users asking for a five-star review.
+
+Repository: [https://github.com/publishpress/wordpress-reviews](https://github.com/publishpress/wordpress-reviews)
 
 ## Installation
 
@@ -19,12 +22,17 @@ If your plugin does not load the composer's autoloader yet, you need to add the 
 require_once 'vendor/autoload.php';
 ```
 
-The library should be initialized in the method of your plugin that loads the main WordPress hooks.
-You can add it to the main class of the plugin. When instantiating it you have to pass 3 params: the plugin slug (the same one used in the URL of the WordPress repository), the plugin's name, and the logo URL (optional).
+**Only free plugins should initialize this library**.
 
-Pro plugins don't require this library, if they use they embed the free plugin. If you instantiate this library on both free and pro plugins, users will probably see duplicated banners.
+It can be instantiated and initialized in the method that loads the main WordPress hooks.
 
-It by default displays the banner when the following condition is true:
+When instantiating this library, you have to pass three params:
+
+* the plugin slug (the same one used in the URL of the WordPress repository)
+* the plugin's name
+* the URL for the logo (optional)
+
+It by default displays the banner when the following conditional is true:
 
 ```php
 is_admin() && current_user_can('edit_posts')
@@ -92,7 +100,7 @@ class MyPlugin
 }
 ```
 
-By default, the library will use the plugin's slug as a prefix for the actions, metadata and options:
+By default, the library will use the plugin's slug as a prefix for the actions, metadata, and options:
 
 ```php
 [
@@ -131,10 +139,22 @@ function my_plugin_wp_reviews_meta_map($metaMap)
 }
 ```
 
+## Common questions
+
+### Should I use this library on Pro plugins?
+
+Pro plugins that embed the free plugin code **should not instantiate or initialize this library** otherwise, users will
+probably see duplicated admin notices or will be asked for a review twice.
+
+Keeping the library activated only by the free plugin allows both versions, free and pro,
+to share the same options and metadata stored in the database, avoiding duplicated banners or review requests.
+
+Please, **only use this library in the Free plugin** and do not disable or block it in the Pro version. We want to keep it enabled
+for both free and pro users.
+
 ## Testing
 
-You can easily test the banner in the WordPress admin.
-After initializing the library, change the option `<plugin-slug>_wp_reviews_installed_on` in the options table. Set it for older data to make sure the time difference is bigger than the trigger we are using.
+You can test the banner in the WordPress admin by changing the option `<plugin-slug>_wp_reviews_installed_on` in the options table. Set it for older data to make sure the time difference is bigger than the selected trigger
 
 ## Copyright
 
