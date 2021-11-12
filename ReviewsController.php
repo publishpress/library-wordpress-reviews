@@ -244,6 +244,10 @@ class ReviewsController
         static $selected;
 
         if (! isset($selected)) {
+            $selected = [];
+        }
+
+        if (! isset($selected[$this->pluginSlug])) {
             $dismissedTriggers = $this->getDismissedTriggerGroups();
 
             $triggers = $this->getTriggers();
@@ -254,18 +258,18 @@ class ReviewsController
                             false,
                             $trigger['conditions']
                         ) && (empty($dismissedTriggers[$g]) || $dismissedTriggers[$g] < $trigger['priority'])) {
-                        $selected = $g;
+                        $selected[$this->pluginSlug] = $g;
                         break;
                     }
                 }
 
-                if (isset($selected)) {
+                if (isset($selected[$this->pluginSlug])) {
                     break;
                 }
             }
         }
 
-        return $selected;
+        return $selected[$this->pluginSlug];
     }
 
     /**
@@ -305,12 +309,16 @@ class ReviewsController
         static $triggers;
 
         if (! isset($triggers)) {
+            $triggers = [];
+        }
+
+        if (! isset($triggers[$this->pluginSlug])) {
             $timeMessage = __(
                 'Hey, you\'ve been using %1$s for %2$s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep %1$s growing.',
                 $this->pluginSlug
             );
 
-            $triggers = apply_filters(
+            $triggers[$this->pluginSlug] = apply_filters(
                 $this->metaMap['filter_triggers'],
                 [
                     'time_installed' => [
@@ -350,23 +358,23 @@ class ReviewsController
             );
 
             // Sort Groups
-            uasort($triggers, [$this, 'rsortByPriority']);
+            uasort($triggers[$this->pluginSlug], [$this, 'rsortByPriority']);
 
             // Sort each groups triggers.
-            foreach ($triggers as $v) {
+            foreach ($triggers[$this->pluginSlug] as $v) {
                 uasort($v['triggers'], [$this, 'rsortByPriority']);
             }
         }
 
         if (isset($group)) {
-            if (! isset($triggers[$group])) {
+            if (! isset($triggers[$this->pluginSlug][$group])) {
                 return false;
             }
 
             if (! isset($code)) {
-                $return = $triggers[$group];
-            } elseif (isset($triggers[$group]['triggers'][$code])) {
-                $return = $triggers[$group]['triggers'][$code];
+                $return = $triggers[$this->pluginSlug][$group];
+            } elseif (isset($triggers[$this->pluginSlug][$group]['triggers'][$code])) {
+                $return = $triggers[$this->pluginSlug][$group]['triggers'][$code];
             } else {
                 $return = false;
             }
@@ -374,7 +382,7 @@ class ReviewsController
             return $return;
         }
 
-        return $triggers;
+        return $triggers[$this->pluginSlug];
     }
 
     /**
@@ -385,6 +393,10 @@ class ReviewsController
         static $selected;
 
         if (! isset($selected)) {
+            $selected = [];
+        }
+
+        if (! isset($selected[$this->pluginSlug])) {
             $dismissedTriggers = $this->getDismissedTriggerGroups();
 
             foreach ($this->getTriggers() as $g => $group) {
@@ -393,18 +405,18 @@ class ReviewsController
                             false,
                             $trigger['conditions']
                         ) && (empty($dismissedTriggers[$g]) || $dismissedTriggers[$g] < $trigger['priority'])) {
-                        $selected = $t;
+                        $selected[$this->pluginSlug] = $t;
                         break;
                     }
                 }
 
-                if (isset($selected)) {
+                if (isset($selected[$this->pluginSlug])) {
                     break;
                 }
             }
         }
 
-        return $selected;
+        return $selected[$this->pluginSlug];
     }
 
     /**
