@@ -416,6 +416,10 @@ class ReviewsController
             }
         }
 
+        if (!isset($selected[$this->pluginSlug])) {
+            return false;
+        }
+
         return $selected[$this->pluginSlug];
     }
 
