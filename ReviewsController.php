@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package PublishPress
  * @author  PublishPress
@@ -35,7 +36,6 @@
  */
 
 namespace PublishPress\WordPressReviews;
-
 
 use Exception;
 
@@ -271,10 +271,12 @@ class ReviewsController
 
             foreach ($triggers as $g => $group) {
                 foreach ($group['triggers'] as $trigger) {
-                    if (! in_array(
+                    if (
+                        ! in_array(
                             false,
                             $trigger['conditions']
-                        ) && (empty($dismissedTriggers[$g]) || $dismissedTriggers[$g] < $trigger['priority'])) {
+                        ) && (empty($dismissedTriggers[$g]) || $dismissedTriggers[$g] < $trigger['priority'])
+                    ) {
                         $selected[$this->pluginSlug] = $g;
                         break;
                     }
@@ -418,10 +420,12 @@ class ReviewsController
 
             foreach ($this->getTriggers() as $g => $group) {
                 foreach ($group['triggers'] as $t => $trigger) {
-                    if (! in_array(
+                    if (
+                        ! in_array(
                             false,
                             $trigger['conditions']
-                        ) && (empty($dismissedTriggers[$g]) || $dismissedTriggers[$g] < $trigger['priority'])) {
+                        ) && (empty($dismissedTriggers[$g]) || $dismissedTriggers[$g] < $trigger['priority'])
+                    ) {
                         $selected[$this->pluginSlug] = $t;
                         break;
                     }
@@ -565,7 +569,7 @@ class ReviewsController
                         }
                     });
 
-                    <?php if ( ! empty($this->apiUrl) ) : ?>
+                    <?php if (! empty($this->apiUrl)) : ?>
                     $.ajax({
                         method: "POST",
                         dataType: "json",
@@ -611,7 +615,7 @@ class ReviewsController
                 <img src="<?php
                 echo $this->iconUrl; ?>" class="notice-icon" alt="<?php
                 echo $this->pluginName; ?> logo"/>
-            <?php
+                <?php
             endif; ?>
 
             <p><?php
@@ -621,14 +625,14 @@ class ReviewsController
                 echo "$this->pluginSlug-dismiss"; ?>"
                    target="_blank"
                    href="<?php
-                   echo $trigger['link']; ?>"
+                    echo $trigger['link']; ?>"
                    data-reason="am_now"
                 >
                     <strong><?php
                         echo sprintf(
                             __('Click here to add your rating for %s', $this->pluginSlug),
                             $this->pluginName
-                        ); ?></strong>
+                            ); ?></strong>
                 </a>
                 <a href="#" class="button <?php
                 echo "$this->pluginSlug-dismiss"; ?>" data-reason="maybe_later">
