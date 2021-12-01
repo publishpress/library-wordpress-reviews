@@ -629,10 +629,8 @@ class ReviewsController
                    data-reason="am_now"
                 >
                     <strong><?php
-                        echo sprintf(
-                            __('Click here to add your rating for %s', $this->pluginSlug),
-                            $this->pluginName
-                            ); ?></strong>
+                        $message = __('Click here to add your rating for %s', $this->pluginSlug);
+                        echo sprintf($message, $this->pluginName); ?></strong>
                 </a>
                 <a href="#" class="button <?php
                 echo "$this->pluginSlug-dismiss"; ?>" data-reason="maybe_later">
