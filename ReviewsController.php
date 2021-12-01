@@ -148,7 +148,7 @@ class ReviewsController
      */
     private function screenIsAllowedToDisplayNotice()
     {
-        $displayNotice = is_admin() && current_user_can('edit_posts');
+        $displayNotice = is_admin();
 
         /**
          * Deprecated filter to specify a custom conditional to display or not the notice.
@@ -170,7 +170,24 @@ class ReviewsController
          *
          * @return bool
          */
-        return apply_filters("{$this->pluginSlug}_wp_reviews_allow_display_notice", $displayNotice);
+        $displayNotice = apply_filters("{$this->pluginSlug}_wp_reviews_allow_display_notice", $displayNotice);
+
+        if (! $this->currentUserIsAdministrator()) {
+            $displayNotice = false;
+        }
+
+        return $displayNotice;
+    }
+
+    private function currentUserIsAdministrator()
+    {
+        $currentUser = wp_get_current_user();
+
+        if (empty($currentUser) || ! is_object($currentUser) && is_wp_error($currentUser)) {
+            return false;
+        }
+
+        return in_array('administrator', $currentUser->roles);
     }
 
     /**
@@ -416,7 +433,7 @@ class ReviewsController
             }
         }
 
-        if (!isset($selected[$this->pluginSlug])) {
+        if (! isset($selected[$this->pluginSlug])) {
             return false;
         }
 
