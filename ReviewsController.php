@@ -181,7 +181,8 @@ class ReviewsController
 
     private function currentUserIsAdministrator()
     {
-        $currentUser = wp_get_current_user();
+        $currentUser = get_current_user_id();
+        $currentUser = get_user_by('ID', $currentUser);
 
         if (empty($currentUser) || ! is_object($currentUser) && is_wp_error($currentUser)) {
             return false;
