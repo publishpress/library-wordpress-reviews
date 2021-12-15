@@ -57,11 +57,6 @@ class ReviewsController
     private $pluginName;
 
     /**
-     * @var string
-     */
-    private $apiUrl = '';
-
-    /**
      * @var array
      */
     private $metaMap;
@@ -570,20 +565,6 @@ class ReviewsController
                             reason: reason
                         }
                     });
-
-                    <?php if (! empty($this->apiUrl)) : ?>
-                    $.ajax({
-                        method: "POST",
-                        dataType: "json",
-                        url: '<?php echo $this->apiUrl; ?>',
-                        data: {
-                            trigger_group: trigger.group,
-                            trigger_code: trigger.code,
-                            reason: reason,
-                            uuid: '<?php echo $uuid; ?>'
-                        }
-                    });
-                    <?php endif; ?>
                 }
 
                 $(document)
