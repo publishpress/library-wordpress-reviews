@@ -52,7 +52,3 @@ RoboFile.php export-ignore
 Thumbs.db export-ignore
 webpack.config.js export-ignore
 wp-cli.local.yml export-ignore
-
-*.php diff=php
-*.js diff=js
-*.png diff=
