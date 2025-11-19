@@ -212,19 +212,18 @@ class ReviewsController
      */
     public function ajaxHandler()
     {
-        $args = wp_parse_args(
-            $_REQUEST,
-            [
-                'group' => $this->getTriggerGroup(),
-                'code' => $this->getTriggerCode(),
-                'priority' => $this->getCurrentTrigger('priority'),
-                'reason' => 'maybe_later',
-            ]
-        );
+        $nonce = isset($_REQUEST['nonce']) ? sanitize_key($_REQUEST['nonce']) : '';
 
-        if (! wp_verify_nonce($_REQUEST['nonce'], $this->metaMap['nonce_action'])) {
+        if (! wp_verify_nonce($nonce, $this->metaMap['nonce_action'])) {
             wp_send_json_error();
         }
+
+        $args = [
+            'group' => isset($_REQUEST['group']) ? sanitize_text_field($_REQUEST['group']) : $this->getTriggerGroup(),
+            'code' => isset($_REQUEST['code']) ? sanitize_text_field($_REQUEST['code']) : $this->getTriggerCode(),
+            'priority' => isset($_REQUEST['priority']) ? intval($_REQUEST['priority']) : $this->getCurrentTrigger('priority'),
+            'reason' => isset($_REQUEST['reason']) ? sanitize_key($_REQUEST['reason']) : 'maybe_later',
+        ];
 
         try {
             $userId = get_current_user_id();
@@ -495,30 +494,30 @@ class ReviewsController
             .{$this->pluginSlug}-wp-reviews-notice p {
                 font-size: 15px;
             }
-            
+
             .{$this->pluginSlug}-wp-reviews-notice .button:not(.notice-dismiss) {
                 border-width: 1px;
             }
-            
+
             .{$this->pluginSlug}-wp-reviews-notice .button.button-primary {
                 background-color: #655897;
                 border-color: #3d355c;
                 color: #fff;
             }
-            
+
             .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
                 float: right;
                 height: 110px;
                 margin-top: 10px;
                 margin-left: 10px;
             }
-            
+
             @media (min-width:1000px) {
                 .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
                     height: 90px;
                 }
             }
-            
+
             @media (min-width:1700px) {
                 .{$this->pluginSlug}-wp-reviews-notice .notice-icon {
                     height: 70px;
