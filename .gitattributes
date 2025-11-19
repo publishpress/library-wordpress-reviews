@@ -52,4 +52,5 @@ RoboFile.php export-ignore
 Thumbs.db export-ignore
 webpack.config.js export-ignore
 wp-cli.local.yml export-ignore
-CLAUSE.md export-ignore
+CLAUDE.md export-ignore
+.claude export-ignore
