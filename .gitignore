@@ -1,4 +1,5 @@
 .phplint-cache
+.phpunit.result.cache
 
 .idea/
 vendor/
