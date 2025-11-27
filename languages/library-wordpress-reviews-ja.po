@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-11-26T14:43:48+00:00\n"
+"PO-Revision-Date: 2025-11-27 07:44+0000\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: library-wordpress-reviews\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ja\n"
+
+#: ReviewsController.php:358
+#. translators: %1$s: Plugin name, %2$s: Time period (e.g., "1 week", "1 month")
+#, php-format
+msgid ""
+"Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
+"been useful. Please could you quickly leave a 5-star rating on "
+"WordPress.org? It really does help to keep %1$s growing."
+msgstr ""
+"こんにちは、あなたはサイトで %1$s を %2$s 使っています。プラグインが役立っていることを願っています。WordPress.org で 5 "
+"スターの評価を迅速に残していただけませんか？%1$s の成長を維持するのに本当に役立ちます。"
+
+#: ReviewsController.php:369
+msgid "1 week"
+msgstr "1 週間"
+
+#: ReviewsController.php:377
+msgid "1 month"
+msgstr "1 ヶ月"
+
+#: ReviewsController.php:388
+msgid "3 months"
+msgstr "3 ヶ月"
+
+#: ReviewsController.php:643
+#. translators: %s: Plugin name
+#, php-format
+msgid "Click here to add your rating for %s"
+msgstr "ここをクリックして %s の評価を追加してください"
+
+#: ReviewsController.php:649
+msgid "Maybe later"
+msgstr "後で"
+
+#: ReviewsController.php:654
+msgid "I already did"
+msgstr "もうしました"

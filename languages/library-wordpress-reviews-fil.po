@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-11-26T14:43:48+00:00\n"
+"PO-Revision-Date: 2025-11-27 07:44+0000\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: library-wordpress-reviews\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fil\n"
+
+#: ReviewsController.php:358
+#. translators: %1$s: Plugin name, %2$s: Time period (e.g., "1 week", "1 month")
+#, php-format
+msgid ""
+"Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
+"been useful. Please could you quickly leave a 5-star rating on "
+"WordPress.org? It really does help to keep %1$s growing."
+msgstr ""
+"Hey, gumagamit ka na ng %1$s sa loob ng %2$s sa iyong site. Inaasahan "
+"naming nakakatulong ang plugin. Puwede ka bang mabilis na mag-iwan ng "
+"5-star na rating sa WordPress.org? Talaga namang nakakatulong ito para "
+"patuloy na lumago ang %1$s."
+
+#: ReviewsController.php:369
+msgid "1 week"
+msgstr "1 linggo"
+
+#: ReviewsController.php:377
+msgid "1 month"
+msgstr "1 buwan"
+
+#: ReviewsController.php:388
+msgid "3 months"
+msgstr "3 buwan"
+
+#: ReviewsController.php:643
+#. translators: %s: Plugin name
+#, php-format
+msgid "Click here to add your rating for %s"
+msgstr "I-click dito upang idagdag ang iyong rating para sa %s"
+
+#: ReviewsController.php:649
+msgid "Maybe later"
+msgstr "Siguro mamaya"
+
+#: ReviewsController.php:654
+msgid "I already did"
+msgstr "Nagawa ko na"
