@@ -6,3 +6,6 @@ vendor/
 
 .vscode/*
 *.code-workspace
+
+dev-workspace/.cache
+.env
