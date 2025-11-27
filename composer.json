@@ -75,7 +75,7 @@
     "check:lint": "phplint --no-cache",
     "check:cs": "phpcs",
     "check:stan": "phpstan",
-        "translate": [
+    "translate": [
       "vendor/bin/publishpress-translate translate"
     ],
     "translate:dry-run": [
