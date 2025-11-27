@@ -1,0 +1,19 @@
+path:
+  - ReviewsController.php
+jobs: 10
+extensions:
+  - php
+exclude:
+  - .github
+  - .vscode
+  - .idea
+  - /tests
+  - .wordpress-org
+  - bin
+  - vendor
+  - /dist
+  - languages
+  - node_modules
+  - dev-workspace
+  - /cache
+  - .cache
