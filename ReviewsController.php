@@ -133,9 +133,9 @@ class ReviewsController
             return;
         }
 
-        $mofile = __DIR__ . '/languages/library-wordpress-reviews-' . determine_locale() . '.mo';
+        $mofile = __DIR__ . '/languages/publishpress-wordpress-reviews-' . determine_locale() . '.mo';
 
-        load_textdomain('library-wordpress-reviews', $mofile);
+        load_textdomain('publishpress-wordpress-reviews', $mofile);
         self::$textDomainLoaded = true;
     }
 
@@ -355,7 +355,7 @@ class ReviewsController
         if (! array_key_exists($this->pluginSlug, $triggers)) {
             $timeMessage = __(
                 'Hey, you\'ve been using %1$s for %2$s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep %1$s growing.',
-                'library-wordpress-reviews'
+                'publishpress-wordpress-reviews'
             );
 
             $triggers[$this->pluginSlug] = apply_filters(
@@ -364,7 +364,7 @@ class ReviewsController
                     'time_installed' => [
                         'triggers' => [
                             'one_week' => [
-                                'message' => sprintf($timeMessage, $this->pluginName, __('1 week', 'library-wordpress-reviews')),
+                                'message' => sprintf($timeMessage, $this->pluginName, __('1 week', 'publishpress-wordpress-reviews')),
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +1 week') < time(),
                                 ],
@@ -372,7 +372,7 @@ class ReviewsController
                                 'priority' => 10,
                             ],
                             'one_month' => [
-                                'message' => sprintf($timeMessage, $this->pluginName, __('1 month', 'library-wordpress-reviews')),
+                                'message' => sprintf($timeMessage, $this->pluginName, __('1 month', 'publishpress-wordpress-reviews')),
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +1 month') < time(),
                                 ],
@@ -383,7 +383,7 @@ class ReviewsController
                                 'message' => sprintf(
                                     $timeMessage,
                                     $this->pluginName,
-                                    __('3 months', 'library-wordpress-reviews')
+                                    __('3 months', 'publishpress-wordpress-reviews')
                                 ),
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +3 months') < time(),
@@ -637,18 +637,18 @@ class ReviewsController
                    data-reason="am_now"
                 >
                     <strong><?php
-                        $message = __('Click here to add your rating for %s', 'library-wordpress-reviews');
+                        $message = __('Click here to add your rating for %s', 'publishpress-wordpress-reviews');
                         echo sprintf($message, $this->pluginName); ?></strong>
                 </a>
                 <a href="#" class="button <?php
                 echo "$this->pluginSlug-dismiss"; ?>" data-reason="maybe_later">
                     <?php
-                    _e('Maybe later', 'library-wordpress-reviews'); ?>
+                    _e('Maybe later', 'publishpress-wordpress-reviews'); ?>
                 </a>
                 <a href="#" class="button <?php
                 echo "$this->pluginSlug-dismiss"; ?>" data-reason="already_did">
                     <?php
-                    _e('I already did', 'library-wordpress-reviews'); ?>
+                    _e('I already did', 'publishpress-wordpress-reviews'); ?>
                 </a>
             </p>
         </div>

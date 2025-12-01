@@ -7,48 +7,46 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-26T14:43:48+00:00\n"
-"PO-Revision-Date: 2025-11-27 07:44+0000\n"
-"X-Generator: WP-CLI 2.13.0-alpha\n"
-"X-Domain: library-wordpress-reviews\n"
+"POT-Creation-Date: 2025-12-01T12:59:28+00:00\n"
+"PO-Revision-Date: 2025-12-01 13:01+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: publishpress-wordpress-reviews\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language: id-ID\n"
 
-#: ReviewsController.php:358
-#. translators: %1$s: Plugin name, %2$s: Time period (e.g., "1 week", "1 month")
+#: ReviewsController.php:356
 #, php-format
 msgid ""
 "Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
 "been useful. Please could you quickly leave a 5-star rating on "
 "WordPress.org? It really does help to keep %1$s growing."
 msgstr ""
-"Hai, Anda telah menggunakan %1$s selama %2$s di situs Anda. Kami berharap "
-"plugin ini bermanfaat. Tolong, bisakah Anda dengan cepat meninggalkan "
-"penilaian 5 bintang di WordPress.org? Itu benar-benar membantu untuk "
-"menjaga %1$s agar terus berkembang."
+"Hei, Anda telah menggunakan %1$s selama %2$s di situs Anda. Kami berharap "
+"plugin ini bermanfaat. Bisakah Anda dengan cepat meninggalkan penilaian 5 "
+"bintang di WordPress.org? Ini benar-benar membantu untuk menjaga %1$s tetap "
+"berkembang."
 
-#: ReviewsController.php:369
+#: ReviewsController.php:367
 msgid "1 week"
 msgstr "1 minggu"
 
-#: ReviewsController.php:377
+#: ReviewsController.php:375
 msgid "1 month"
 msgstr "1 bulan"
 
-#: ReviewsController.php:388
+#: ReviewsController.php:386
 msgid "3 months"
 msgstr "3 bulan"
 
-#: ReviewsController.php:643
-#. translators: %s: Plugin name
+#: ReviewsController.php:640
 #, php-format
 msgid "Click here to add your rating for %s"
 msgstr "Klik di sini untuk menambahkan penilaian Anda untuk %s"
 
-#: ReviewsController.php:649
+#: ReviewsController.php:646
 msgid "Maybe later"
 msgstr "Mungkin nanti"
 
-#: ReviewsController.php:654
+#: ReviewsController.php:651
 msgid "I already did"
 msgstr "Saya sudah melakukannya"
