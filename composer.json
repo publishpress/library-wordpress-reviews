@@ -29,12 +29,6 @@
   "require": {
     "php": ">=7.2"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/publishpress/library-publishpress-translator.git"
-    }
-  ],
   "require-dev": {
     "phpunit/phpunit": "^8.5 || ^9.0",
     "brain/monkey": "^2.6",
@@ -47,7 +41,7 @@
     "szepeviktor/phpstan-wordpress": "^1.3",
     "automattic/vipwpcs": "^3",
     "publishpress/publishpress-phpcs-standards": "dev-main",
-    "publishpress/translations": "dev-development"
+    "publishpress/translations": "^1.0.0"
   },
   "scripts": {
     "test": "phpunit",

@@ -86,8 +86,6 @@ class ReviewsController
         $this->pluginName = $pluginName;
         $this->iconUrl = esc_url_raw($iconUrl);
 
-        $this->loadTextDomain();
-
         /**
          * Filter to replace the meta map with options, filters and actions names.
          *
@@ -144,6 +142,7 @@ class ReviewsController
      */
     public function init()
     {
+        $this->loadTextDomain();
         $this->addHooks();
     }
 
