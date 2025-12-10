@@ -40,7 +40,8 @@
     "phpstan/phpstan": "^1.10",
     "szepeviktor/phpstan-wordpress": "^1.3",
     "automattic/vipwpcs": "^3",
-    "publishpress/publishpress-phpcs-standards": "dev-main"
+    "publishpress/publishpress-phpcs-standards": "dev-main",
+    "publishpress/translations": "^1.0.0"
   },
   "scripts": {
     "test": "phpunit",
@@ -67,7 +68,25 @@
     "check:php-8.4": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.4",
     "check:lint": "phplint --no-cache",
     "check:cs": "phpcs",
-    "check:stan": "phpstan"
+    "check:stan": "phpstan",
+    "translate": [
+      "vendor/bin/publishpress-translate translate"
+    ],
+    "translate:dry-run": [
+      "vendor/bin/publishpress-translate translate --dry-run"
+    ],
+    "translate:download": [
+      "vendor/bin/publishpress-translate download"
+    ],
+    "translate:upload": [
+      "vendor/bin/publishpress-translate upload"
+    ],
+    "translate:force": [
+      "vendor/bin/publishpress-translate translate --force"
+    ],
+    "translate:force-custom": [
+      "vendor/bin/publishpress-translate translate --force --custom"
+    ]
   },
   "config": {
     "allow-plugins": {

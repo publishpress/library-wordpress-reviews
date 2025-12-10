@@ -56,3 +56,4 @@ CLAUDE.md export-ignore
 .claude export-ignore
 CHANGELOG.md export-ignore
 dev-workspace export-ignore
+phpstan.neon export-ignore

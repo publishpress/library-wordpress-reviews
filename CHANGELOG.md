@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0]
+
+- ADDED: New languages file for German, Finnish, Filipino, Indonesian, Japanese, Korean, Portuguese (Brazil), Russian, and Yoruba
+- ADDED: Translation workflow scripts via composer 
+- ADDED: dev-workspace with Docker and PHPStan configuration
+
 ## [1.1.21]
 
 - FIXED: Improve nonce verification on ajax handler method.
