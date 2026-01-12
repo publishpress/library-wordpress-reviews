@@ -52,3 +52,8 @@ RoboFile.php export-ignore
 Thumbs.db export-ignore
 webpack.config.js export-ignore
 wp-cli.local.yml export-ignore
+CLAUDE.md export-ignore
+.claude export-ignore
+CHANGELOG.md export-ignore
+dev-workspace export-ignore
+phpstan.neon export-ignore
