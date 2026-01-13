@@ -4,7 +4,7 @@ FROM node:$NODE_VERSION-alpine AS node
 
 FROM publishpress/dev-workspace-terminal:generic-4.3.7
 
-ENV PLUGIN_NAME="PublishPress Hub"
+ENV PLUGIN_NAME="Library WordPress Reviews"
 
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/share /usr/local/share
