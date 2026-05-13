@@ -1,6 +1,10 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.2.1] - 13 May, 2026
+
+- Changed: Added configuration files to the export-ignore list to exclude them from distribution.
+
 [1.2.0] - 12 Jan, 2026
 
 - ADDED: New languages file for German, Finnish, Filipino, Indonesian, Japanese, Korean, Portuguese (Brazil), Russian, and Yoruba
