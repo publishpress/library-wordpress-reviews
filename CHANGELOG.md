@@ -1,6 +1,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.2.2] - 10 Sep, 2026
+
+- Fixed: Fix Loco compatibility by adding loco.xml file (Issue #21).
+- Fixed: Fix CSP compliance, moving inline javascript with proper implementation (PR #27).
+- Fixed: Fix wordpress.org review links to comply with plugins directory rules.
+
 [1.2.1] - 13 May, 2026
 
 - Changed: Added configuration files to the export-ignore list to exclude them from distribution.
