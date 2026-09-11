@@ -353,7 +353,7 @@ class ReviewsController
 
         if (! array_key_exists($this->pluginSlug, $triggers)) {
             $timeMessage = __(
-                'Hey, you\'ve been using %1$s for %2$s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep %1$s growing.',
+                'Hey, you\'ve been using %1$s for %2$s on your site. We hope the plugin has been useful. Please could you quickly leave a review on WordPress.org? It really does help to keep %1$s growing.',
                 'publishpress-wordpress-reviews'
             );
 
@@ -367,7 +367,7 @@ class ReviewsController
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +1 week') < time(),
                                 ],
-                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/?rate=5#rate-response",
+                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/",
                                 'priority' => 10,
                             ],
                             'one_month' => [
@@ -375,7 +375,7 @@ class ReviewsController
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +1 month') < time(),
                                 ],
-                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/?rate=5#rate-response",
+                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/",
                                 'priority' => 20,
                             ],
                             'three_months' => [
@@ -387,7 +387,7 @@ class ReviewsController
                                 'conditions' => [
                                     strtotime($this->installationPath() . ' +3 months') < time(),
                                 ],
-                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/?rate=5#rate-response",
+                                'link' => "https://wordpress.org/support/plugin/{$this->pluginSlug}/reviews/",
                                 'priority' => 30,
                             ],
                         ],
